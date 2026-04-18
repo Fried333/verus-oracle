@@ -93,7 +93,7 @@ Not every currency shares a basket with a stablecoin. The oracle derives prices 
 
 ```
 Level 1: Stablecoins = $1.00 (axiom, verified by external guard rail)
-Level 2: tBTC, vETH, MKR = priceinreserve ratio vs stablecoins
+Level 2: tBTC, vETH = priceinreserve ratio vs stablecoins (verified by external guard rail)
 Level 3: VRSC = priceinreserve ratio vs stablecoins (depth-weighted)
 Level 4: Tokens = priceinreserve ratio vs VRSC, then × VRSC_usd
 Level 5: PBaaS native (vDEX, vARRR, CHIPS) = on-chain ratio vs VRSC, then × VRSC_usd
