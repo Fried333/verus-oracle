@@ -2,18 +2,35 @@
 // Polls getcurrencystate for all baskets, computes depth-weighted USD prices,
 // applies EMA smoothing, checks external guard rails for BTC/ETH/stables.
 
-import pg from "pg";
 import { VerusRpc } from "./rpc.mjs";
+import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { join } from "path";
 
-const db = new pg.Pool({ connectionString: process.env.DATABASE_URL || "postgresql://oracle_lab:oracle_lab@127.0.0.1:5432/oracle_lab" });
+const OUT = process.env.OUT_DIR || "./out";
+mkdirSync(OUT, { recursive: true });
+const PRICES_PATH = `${OUT}/prices.json`;
+const HISTORY_PATH = `${OUT}/price-history.jsonl`;
+const GUARD_PATH = `${OUT}/guard-checks.jsonl`;
+
+function loadPrices() {
+  if (!existsSync(PRICES_PATH)) return {};
+  return JSON.parse(readFileSync(PRICES_PATH, "utf8"));
+}
+function savePrices(prices) {
+  writeFileSync(PRICES_PATH, JSON.stringify(prices, null, 2));
+}
+function appendHistory(entry) {
+  appendFileSync(HISTORY_PATH, JSON.stringify(entry) + "\n");
+}
+function appendGuard(entry) {
+  appendFileSync(GUARD_PATH, JSON.stringify(entry) + "\n");
+}
 
 // Multi-chain RPC — VRSC + PBaaS daemons
 const chains = new Map();
 chains.set("vrsc", new VerusRpc());
 
 // Discover PBaaS chains from conf files
-import { readdirSync, readFileSync } from "fs";
-import { join } from "path";
 import { homedir } from "os";
 
 try {
@@ -65,8 +82,8 @@ const STABLES = new Set([
   "iGBs4DWztRNvNEJBt4mqHszLxfKTNHTkhM", // DAI
   "i61cV2uicKSi1rSMQCBNQeSYC3UAi9GVzd", // vUSDC
   "i9oCSqKALwJtcv49xUKS2U2i79h1kX6NEY", // vUSDT
-  "iC5TQFrFXSYLQGkiZ8FYmZHFJzaRF5CYgE", // EURC
-  "i9nLSK4S1U5sVMq4eJUHR1gbFALz56J9Lj", // scrvUSD
+  // NOT EURC (iC5T) — Euro-denominated, ~$1.18 not $1
+  // NOT scrvUSD (i9nL) — yield-bearing, ~$1.10 not $1
 ]);
 
 const EXTERNAL_IDS = {
@@ -250,10 +267,7 @@ async function poll() {
       const totalDepth = entries.reduce((s, e) => s + e.depth, 0);
       const weightedPrice = entries.reduce((s, e) => s + e.price * e.depth, 0) / totalDepth;
       const check = checkGuardRail(cid, weightedPrice, externalPrices);
-      await db.query(
-        `INSERT INTO guard_rail_checks (currency_id, on_chain_price, external_price, deviation_pct, status, external_source) VALUES ($1, $2, $3, $4, $5, $6)`,
-        [cid, weightedPrice, check.externalPrice, check.deviation, check.status, check.source]
-      );
+      appendGuard({ currency_id: cid, on_chain: weightedPrice, external: check.externalPrice, deviation: check.deviation, status: check.status, source: check.source, at: now.toISOString() });
     }
   }
   externalPrices = global._externalPrices || {};
@@ -292,25 +306,14 @@ async function poll() {
 
     const status = guard.status === "no_external" ? "healthy" : guard.status;
 
-    await db.query(
-      `INSERT INTO prices (currency_id, usd_price, ema_price, source, source_block, source_basket, confidence, status, updated_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-       ON CONFLICT (currency_id) DO UPDATE SET
-         usd_price = EXCLUDED.usd_price, ema_price = EXCLUDED.ema_price,
-         source = EXCLUDED.source, source_block = EXCLUDED.source_block,
-         source_basket = EXCLUDED.source_basket, confidence = EXCLUDED.confidence,
-         status = EXCLUDED.status, updated_at = EXCLUDED.updated_at`,
-      [cid, weightedPrice, emaPrice, "reserve", tip, bestBasket, confidence, status, now]
-    );
+    const allPrices = loadPrices();
+    allPrices[cid] = { usd_price: weightedPrice, ema_price: emaPrice, source: "reserve", source_block: tip, source_basket: bestBasket, confidence, status, updated_at: now.toISOString() };
+    savePrices(allPrices);
     updated++;
 
     // Price history snapshot
     if (pollCount % HISTORY_EVERY_N === 0) {
-      await db.query(
-        `INSERT INTO price_history (currency_id, usd_price, block_height, source_basket, confidence)
-         VALUES ($1, $2, $3, $4, $5) ON CONFLICT DO NOTHING`,
-        [cid, emaPrice, tip, bestBasket, confidence]
-      ).catch(() => {});
+      appendHistory({ currency_id: cid, usd_price: emaPrice, block: tip, basket: bestBasket, confidence, at: now.toISOString() });
     }
   }
 

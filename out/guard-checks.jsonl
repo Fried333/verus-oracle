@@ -1,0 +1,6 @@
+{"currency_id":"iS8TfRPfVpKo5FVfSUzfHBQxo9KuzpnqLU","on_chain":73912.78365416164,"external":77362.14,"deviation":4.458713714277239,"status":"warning","source":"binance","at":"2026-04-18T02:17:16.758Z"}
+{"currency_id":"i9nwxtKuVYX4MSbeULLiK2ttVi6rUEhh4X","on_chain":2345.0595351043025,"external":2421.58,"deviation":3.159939580591902,"status":"warning","source":"binance","at":"2026-04-18T02:17:16.758Z"}
+{"currency_id":"iS8TfRPfVpKo5FVfSUzfHBQxo9KuzpnqLU","on_chain":73912.78365416164,"external":77366.66,"deviation":4.464295532259453,"status":"warning","source":"binance","at":"2026-04-18T02:19:01.844Z"}
+{"currency_id":"i9nwxtKuVYX4MSbeULLiK2ttVi6rUEhh4X","on_chain":2345.0595351043025,"external":2422.45,"deviation":3.1947187721396637,"status":"warning","source":"binance","at":"2026-04-18T02:19:01.844Z"}
+{"currency_id":"iS8TfRPfVpKo5FVfSUzfHBQxo9KuzpnqLU","on_chain":77290.07905329498,"external":77364.73,"deviation":0.09649222159118248,"status":"healthy","source":"binance","at":"2026-04-18T02:20:08.103Z"}
+{"currency_id":"i9nwxtKuVYX4MSbeULLiK2ttVi6rUEhh4X","on_chain":2424.9944613992993,"external":2423.26,"deviation":0.07157553870814964,"status":"healthy","source":"binance","at":"2026-04-18T02:20:08.103Z"}

@@ -1,0 +1,142 @@
+{
+  "i5w5MuNik5NtLcYmNzcvaoixooEebB6MGV": {
+    "usd_price": 0.8031925187761836,
+    "ema_price": 0.8031925187761836,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 60,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iGBs4DWztRNvNEJBt4mqHszLxfKTNHTkhM": {
+    "usd_price": 1,
+    "ema_price": 1,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 80,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iCkKJuJScy4Z6NSDK7Mt42ZAB2NEnAE1o4": {
+    "usd_price": 1840.312438544381,
+    "ema_price": 1840.312438544381,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Bridge.vETH",
+    "confidence": 50,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i9nwxtKuVYX4MSbeULLiK2ttVi6rUEhh4X": {
+    "usd_price": 2424.9944613992993,
+    "ema_price": 2424.9944613992993,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 90,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i61cV2uicKSi1rSMQCBNQeSYC3UAi9GVzd": {
+    "usd_price": 1,
+    "ema_price": 1,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 80,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iS3NjE3XRYWoHRoovpLhFnbDraCq7NFStf": {
+    "usd_price": 58609.97283242097,
+    "ema_price": 58609.97283242097,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "motb",
+    "confidence": 40,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iJczmut8fHgRvVxaNfEPm7SkgJLDFtPcrK": {
+    "usd_price": 10.424763107317387,
+    "ema_price": 10.424763107317387,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "motb",
+    "confidence": 40,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i9oCSqKALwJtcv49xUKS2U2i79h1kX6NEY": {
+    "usd_price": 1,
+    "ema_price": 1,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 80,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iJxDEvJffuUNVRfCmDJN9nzCzjehj4n1e2": {
+    "usd_price": 0.0000030198002081043348,
+    "ema_price": 0.0000030198002081043348,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Agents",
+    "confidence": 30,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i7Woqe6DzhKYe9vHAqCYSSwgk1LrvRcEAp": {
+    "usd_price": 0.000003030251330886741,
+    "ema_price": 0.000003030251330886741,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Agents",
+    "confidence": 30,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iC5TQFrFXSYLQGkiZ8FYmZHFJzaRF5CYgE": {
+    "usd_price": 1.1764491223333273,
+    "ema_price": 1.1764491223333273,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 80,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i7ekXxHYzXW7uAfu5BtWZhd1MjXcWU5Rn3": {
+    "usd_price": 0.00003834120141992414,
+    "ema_price": 0.00003834120141992414,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "🟠",
+    "confidence": 30,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "iS8TfRPfVpKo5FVfSUzfHBQxo9KuzpnqLU": {
+    "usd_price": 77290.07905329498,
+    "ema_price": 77290.07905329498,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 90,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  },
+  "i9nLSK4S1U5sVMq4eJUHR1gbFALz56J9Lj": {
+    "usd_price": 1.1017387097165159,
+    "ema_price": 1.1017387097165159,
+    "source": "reserve",
+    "source_block": 4029312,
+    "source_basket": "Floralis",
+    "confidence": 60,
+    "status": "healthy",
+    "updated_at": "2026-04-18T02:20:08.103Z"
+  }
+}

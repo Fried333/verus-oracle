@@ -1,0 +1,9 @@
+  1 chain(s) connected: vrsc
+oracle v2 worker starting
+  EMA half-life: 600s, max alpha: 0.5
+  guard rails: warn=2% reject=5%
+  poll interval: 60s
+
+[2026-04-18T02:20:08.103Z] discovered 25 baskets
+[guard] CoinGecko error: fetch failed
+[2026-04-18T02:20:08.103Z] block 4029312 updated 14 prices (i5w5Mu=$0.8032 iGBs4D=$1.0000 iCkKJu=$1840.3124)
