@@ -29,6 +29,37 @@ USD prices:
 
 This gives the theoretical mid-market price — no fee, no slippage, updated every block.
 
+### Live example: pricing tBTC
+
+Real data from block 4,029,296 (April 18, 2026):
+
+```
+Step 1 — Get Floralis basket reserve state via getcurrencystate("Floralis")
+
+  tBTC:   0.6163 tBTC    priceinreserve = 0.00020455
+  DAI:    $29,769         priceinreserve = 15.80829
+  vUSDT:  $29,772         priceinreserve = 15.80994
+  vUSDC:  $29,763         priceinreserve = 15.80538
+
+Step 2 — Cross-reference each stablecoin against tBTC
+
+  via DAI:   15.80829 / 0.00020455 = $77,283
+  via vUSDT: 15.80994 / 0.00020455 = $77,291
+  via vUSDC: 15.80538 / 0.00020455 = $77,269
+
+Step 3 — Weighted average across stablecoins (~$29.7k depth each)
+
+  tBTC oracle price = $77,281
+
+Step 4 — Guard rail check
+
+  Oracle:    $77,281
+  External:  $77,000 (CoinGecko + Binance)
+  Deviation: 0.37% → HEALTHY (under 2% threshold)
+```
+
+tBTC is only in the Floralis basket (with stablecoins), so there's one basket in the depth-weighted average. If tBTC appeared in multiple baskets, each would contribute proportionally to its stablecoin reserve depth.
+
 ### Why not use trade prices?
 
 Trade execution prices include the AMM fee (0.025% per leg) and slippage from the reserve curve. In testing:
